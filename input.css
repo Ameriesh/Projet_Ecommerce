@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-Thin.ttf") format("truetype");
+    font-weight: 100; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-Light.ttf") format("truetype");
+    font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-Medium.ttf") format("truetype");
+    font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-SemiBold.ttf") format("truetype");
+    font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-ExtraBold.ttf") format("truetype");
+    font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("src/assets/fonts/Roboto-Black.ttf") format("truetype");
+    font-weight: 900; font-style: normal; font-display: swap;
+}
+
+
+@theme {
+  --breakpoint-sm: 315px;
+  --breakpoint-ms: 600px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-ml: 1100px;
+  --breakpoint-xl: 1145px;
+
+  --font-roboto: "Roboto", sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  --color-primary-100: #EBD8FF;
+  --color-primary-200: #C299FF;
+  --color-primary-300: #8A2BE2;
+  --color-primary-400: #6A0DAD;
+  --color-primary-500: #4B0082;
+
+  --color-secondary-100: #FFF9E6;  
+  --color-secondary-200: #FFE066;  
+  --color-secondary-300: #FFC107;  
+  --color-secondary-400: #B38600;  
+
+
+  --color-bg: #ffffff;
+  --color-text: #111111;
+
+  --container-padding: 12px;
+  --container-padding-md: 2px;
+
+  --animation-movingY: move 3s linear infinite;
+  --animation-spin: spin 1s linear infinite;
+  --animation-ping: ping 1s cubic-bezier(0,0,0.2,1) infinite;
+  --animation-pulse: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;
+  --animation-bounce: bounce 1s infinite;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-roboto);
+  }
+
+  body {
+    
+    font-weight: var(--font-weight-normal);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary-300);
+  }
+
+  a:hover {
+    color: var(--color-primary-400);
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-roboto);
+    font-weight: var(--font-weight-bold);
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+@layer components {
+  
+  .nav-link-active {
+    @apply block py-2 px-3 font-medium text-white bg-[var(--color-primary-400)] rounded-sm md:bg-transparent md:text-[var(--color-primary-300)];
+  }
+
+  .nav-link {
+    @apply block py-2 px-3 font-medium text-gray-900 rounded-sm hover:bg-[var(--color-primary-400)] md:hover:bg-transparent md:hover:text-[var(--color-primary-400)];
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium cursor-pointer transition-all;
+  }
+  .btn-primary {
+    @apply px-6 py-2 rounded-md text-white text-sm font-medium bg-[var(--color-primary-300)] hover:bg-[var(--color-primary-400)] focus:outline-none;
+  }
+  .btn-primary-outline {
+    @apply px-6 py-2 rounded-md text-sm font-medium text-[var(--color-primary-300)] border border-[var(--color-primary-300)] bg-white hover:bg-[var(--color-primary-400)] hover:text-white focus:outline-none;
+    }
+  .btn-secondary {
+    @apply px-6 py-2 rounded-md text-white text-sm font-medium bg-[var(--color-secondary-300)] hover:bg-[var(--color-secondary-400)] focus:outline-none;
+
+   }
+ .btn-secondary-outline {
+  @apply px-6 py-2 rounded-md text-sm font-medium text-[var(--color-secondary-300)] border border-[var(--color-secondary-300)] bg-white hover:bg-[var(--color-secondary-400)] hover:text-white focus:outline-none;
+ }
+  .input-label {
+    @apply block font-medium mb-2 text-lg text-gray-900 mt-4;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-[var(--color-primary-500)] transition-colors;
+  }
+
+  .card {
+    @apply bg-[var(--color-bg)] rounded-xl shadow-md p-4 transition-transform hover:-translate-y-1;
+  }
+
+  .container {
+    @apply mx-auto px-[var(--container-padding)] md:px-[var(--container-padding-md)];
+  }
+}
+
+
+
+

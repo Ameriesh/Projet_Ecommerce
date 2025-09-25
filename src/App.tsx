@@ -1,16 +1,20 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import Button from './components/commons/button/Button'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <h1 className="text-3xl font-bold underline">
         Hello world!
+        
       </h1>
+      <Button variant='primary'>Ajouter au panier</Button>
+      <Button variant='outline'>Retirer du panier</Button>
+      <Button variant='secondary'>Retirer du panier</Button>
+      <Button variant='secondary-outline'>agdhads</Button>
+      
+
     </>
   )
 }
