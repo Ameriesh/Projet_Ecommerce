@@ -1,21 +1,13 @@
-import { useState } from 'react'
 import './App.css'
-import Button from './components/commons/button/Button'
+import Route from '../Route'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 function App() {
+  const queryClient = new QueryClient
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-        
-      </h1>
-      <Button variant='primary'>Ajouter au panier</Button>
-      <Button variant='outline'>Retirer du panier</Button>
-      <Button variant='secondary'>Retirer du panier</Button>
-      <Button variant='secondary-outline'>agdhads</Button>
-      
-
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Route></Route>
+    </QueryClientProvider>
   )
 }
 

@@ -3,11 +3,13 @@ import React from "react";
 type ButtonProps = {
   variant?: "primary" | "secondary" | "outline" | "secondary-outline";
   children: React.ReactNode;
+  className?: string;
   onClick?: () => void;
+
 };
 
-const Button = ({ variant = "primary", children, onClick }: ButtonProps) => {
-  const classes =
+const Button = ({ variant = "primary", children, className = "", onClick }: ButtonProps) => {
+ const baseClass =
     variant === "secondary"
       ? "btn-secondary"
       : variant === "outline"
@@ -17,7 +19,7 @@ const Button = ({ variant = "primary", children, onClick }: ButtonProps) => {
       : "btn-primary";
 
   return (
-    <button className={classes} onClick={onClick}>
+    <button className={`${baseClass} ${className}`} onClick={onClick}>
       {children}
     </button>
   );
