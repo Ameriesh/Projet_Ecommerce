@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import books from "../../../assets/images/book.jpg";
-import games from "../../../assets/images/games.jpg";
-import clothing from "../../../assets/images/Clothes.jpg";
-import tech from "../../../assets/images/techBanner.jpg";
+import books from "../../../assets/images/b.jpg";
+import games from "../../../assets/images/g.jpg";
+import clothing from "../../../assets/images/c.jpg";
+import tech from "../../../assets/images/t.jpg";
 import CardP from "../../../components/commons/cart/CardProps";
 import Button from "../../../components/commons/button/Button";
 

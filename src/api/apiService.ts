@@ -10,7 +10,7 @@ const baseUrl = ky.create({
   prefixUrl: "https://real-time-amazon-data.p.rapidapi.com",
   timeout: 15000,
   headers: {
-    "X-Rapidapi-Key": "1b00e0ccfemsh4fb86521f28c8d3p1cdb07jsn79c67483468c",
+    "X-Rapidapi-Key": "2c28b7094emshfb77b7dd0033a54p1deb16jsnf96a7495c52f",
     "X-Rapidapi-Host": "real-time-amazon-data.p.rapidapi.com",
   },
 });

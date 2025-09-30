@@ -1,4 +1,5 @@
 import './App.css'
+import { Toaster } from 'sonner';
 import Route from '../Route'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 function App() {
@@ -6,6 +7,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster position="top-right" richColors closeButton />
       <Route></Route>
     </QueryClientProvider>
   )

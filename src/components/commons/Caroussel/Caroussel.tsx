@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "../cart/Cart";
 import type { Product } from "../../../api/apiProducts";
+import { useCartStore } from "../../../store/useCartStore";
 
 interface CarouselSpacingProps {
   title: string;
@@ -9,6 +10,7 @@ interface CarouselSpacingProps {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   isLoading: boolean;
   error: unknown;
+
 }
 
 const CarouselSpacing: React.FC<CarouselSpacingProps> = ({
@@ -21,19 +23,17 @@ const CarouselSpacing: React.FC<CarouselSpacingProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const addToCart = useCartStore((state) => state.addToCart);
+  const addToWishlist = useCartStore((state) => state.addToWishlist);
+  const removeFromWishlist = useCartStore((state) => state.removeFromWishlist);
+
   const next = () => {
-    if (currentIndex < items.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-    if (currentIndex + 4 >= items.length) {
-      setPage(page + 1);
-    }
+    if (currentIndex < items.length - 1) setCurrentIndex(currentIndex + 1);
+    if (currentIndex + 4 >= items.length) setPage(page + 1);
   };
 
   const prev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
   const canGoNext = currentIndex < items.length - 4 || items.length > 4;
@@ -130,7 +130,8 @@ const CarouselSpacing: React.FC<CarouselSpacingProps> = ({
                 price={item.product_price}
                 image={item.product_photo}
                 url={item.product_url}
-                onAddToCart={() => console.log(`${item.product_title} ajouté`)}
+                asin={item.asin}
+                
               />
             </div>
           ))}
@@ -149,24 +150,6 @@ const CarouselSpacing: React.FC<CarouselSpacingProps> = ({
           </button>
         )}
       </div>
-
-      {/* Indicateurs de progression (optionnel) */}
-      {items.length > 4 && (
-        <div className="flex justify-center mt-6 gap-1">
-          {Array.from({ length: Math.ceil(items.length / 4) }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index * 4)}
-              className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                Math.floor(currentIndex / 4) === index
-                  ? "bg-primary-600 w-6"
-                  : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Aller à la page ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </section>
   );
 };

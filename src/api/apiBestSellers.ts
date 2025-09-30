@@ -1,40 +1,35 @@
 import { apiService } from "./apiService";
 import type { Product } from "./apiProducts";
-
-interface BestSellersParams {
-  category: string;
-  type?: "BEST_SELLERS" | "GIFT_IDEAS" | "MOST_WISHED_FOR" | "MOVERS_AND_SHAKERS" | "NEW_RELEASES";
-  page?: string;
-  country?: string;
-  limit?: string;
-  language?: string;
-  fields?: string;
+export interface BestSellers {
+  status: string;
+  asin:string;
+  product_title: String;
+  product_price:String;
+  product_star_rating:String;
+  product_num_ratings:445
+  product_url:String;
+  product_photo:String;
+  rank_change_label:String;
 }
 
-export const apiBestSellers = {
-  get: async (params: BestSellersParams): Promise<Product[]> => {
-    const {
-      category,
-      type = "BEST_SELLERS",
-      page = "1",
-      country = "US",
-      limit = "5",
-      language,
-      fields = "product_title,product_url,product_photo,product_price",
-    } = params;
+export const fetchBestSellers = async (
+  categoryId: string,
+    page: number,
+    limit: number
+  
+): Promise<BestSellers[]> => {
+  const res = await apiService.get<{
+    status: string;
+    page: 1;
+    limit: 10;
+    
+    best_sellers: BestSellers[];
+  }>("best-sellers", {
+    category_id: categoryId,
+    page: toString(),
+    limit: toString(),
+    country: "us",
+  });
 
-    const searchParams: Record<string, string> = {
-      category,
-      type,
-      page,
-      country,
-      limit,
-      fields,
-    };
-
-    if (language) searchParams.language = language;
-    const res = await apiService.get<{ products: Product[] }>("best-sellers", searchParams);
-
-    return res.products;
-  },
+  return res.best_sellers;
 };
